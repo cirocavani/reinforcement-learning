@@ -51,7 +51,7 @@ Open a Terminal on Jupyter and run the following test.
 
 # Watch the agent playing Lunar Lander (VNC Web Client window) 
 
-~/work/lunar-lander-learn.sh
+~/work/lunar-lander-watch.sh
 ```
 
 Stop the Container.
