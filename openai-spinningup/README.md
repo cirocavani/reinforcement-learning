@@ -36,14 +36,20 @@ http://127.0.0.1:8888
 http://127.0.0.1:6080/vnc.html
 
 
-Open a Terminal on Jupyter and run the folloing test.
+Open a Terminal on Jupyter and run the following test.
+
+> https://gym.openai.com/envs/LunarLander-v2/
+> 
+> [`lunar-lander-learn.sh`](lunar-lander-learn.sh)
+> 
+> [`lunar-lander-watch.sh`](lunar-lander-watch.sh)
 
 ```sh
-# Lean how to control the lunar lander (Console)
+# Learn an agent that plays Lunar Lander (Console output)
 
 ~/work/lunar-lander-learn.sh
 
-# Watch how agent controls the lunar lander (VNC Web Client) 
+# Watch the agent playing Lunar Lander (VNC Web Client window) 
 
 ~/work/lunar-lander-learn.sh
 ```
