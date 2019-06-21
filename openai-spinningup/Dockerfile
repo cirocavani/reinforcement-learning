@@ -2,9 +2,9 @@ FROM ubuntu:16.04
 
 SHELL ["/bin/sh", "-lxc"]
 
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
-ENV DEBIAN_FRONTEND noninteractive
+ENV LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && \
     apt full-upgrade -y && \
@@ -30,18 +30,18 @@ RUN useradd -m -G sudo user && \
 USER user
 WORKDIR /home/user
 
-COPY --chown=user downloads/novnc-1.0.0.zip /tmp/
+COPY --chown=user downloads/novnc-1.1.0.zip /tmp/
 COPY --chown=user downloads/websockify-0.8.0.zip /tmp/
 RUN mkdir -p ~/libs/ ~/logs/ && \
-    unzip /tmp/novnc-1.0.0.zip -d ~/libs/ && \
+    unzip /tmp/novnc-1.1.0.zip -d ~/libs/ && \
     unzip /tmp/websockify-0.8.0.zip -d ~/libs/ && \
-    ln -s ~/libs/websockify-0.8.0 ~/libs/noVNC-1.0.0/utils/websockify && \
-    rm /tmp/novnc-1.0.0.zip /tmp/websockify-0.8.0.zip
+    ln -s ~/libs/websockify-0.8.0 ~/libs/noVNC-1.1.0/utils/websockify && \
+    rm /tmp/novnc-1.1.0.zip /tmp/websockify-0.8.0.zip
 
-COPY --chown=user downloads/Miniconda3-4.5.11-Linux-x86_64.sh /tmp/
-RUN bash /tmp/Miniconda3-4.5.11-Linux-x86_64.sh -f -b -p ~/conda && \
+COPY --chown=user downloads/Miniconda3-4.6.14-Linux-x86_64.sh /tmp/
+RUN bash /tmp/Miniconda3-4.6.14-Linux-x86_64.sh -f -b -p ~/conda && \
     echo 'PATH=$HOME/conda/bin:$PATH' >> ~/.profile && \
-    rm /tmp/Miniconda3-4.5.11-Linux-x86_64.sh
+    rm /tmp/Miniconda3-4.6.14-Linux-x86_64.sh
 
 RUN conda update -n base -y conda && \
     conda update -q -y --all && \
@@ -56,11 +56,7 @@ COPY --chown=user openai-spinningup/lunar-lander-watch.sh /home/user/work/
 RUN mkdir -p ~/work/ ~/data/ && \
     conda create -n spinningup python=3.6 && \
     conda install -n spinningup -y ipykernel && \
-    git \
-        -c http.sslVerify=false \
-        clone \
-        https://github.com/openai/spinningup.git \
-        ~/work/spinningup && \
+    git -c http.sslVerify=false clone https://github.com/openai/spinningup.git ~/work/spinningup && \
     cd ~/work/spinningup && \
     ~/conda/envs/spinningup/bin/pip install -e .
 

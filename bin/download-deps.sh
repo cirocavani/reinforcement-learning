@@ -5,7 +5,7 @@ cd $(dirname "$0")/../downloads
 
 # Conda
 
-CONDA_PKG=Miniconda3-4.5.11-Linux-x86_64.sh
+CONDA_PKG=Miniconda3-4.6.14-Linux-x86_64.sh
 CONDA_URL=https://repo.continuum.io/miniconda/$CONDA_PKG
 
 if [ ! -f $CONDA_PKG ]; then
@@ -14,8 +14,8 @@ fi
 
 # VNC Client (web)
 
-NOVNC_PKG=novnc-1.0.0.zip
-NOVNC_URL=https://github.com/novnc/noVNC/archive/v1.0.0.zip
+NOVNC_PKG=novnc-1.1.0.zip
+NOVNC_URL=https://github.com/novnc/noVNC/archive/v1.1.0.zip
 
 if [ ! -f $NOVNC_PKG ]; then
     curl -k -L -o $NOVNC_PKG $NOVNC_URL
