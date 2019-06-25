@@ -5,7 +5,7 @@ SHELL ["/bin/sh", "-lxc"]
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     DEBIAN_FRONTEND=noninteractive \
-    DEFAULT_KERNEL_NAME="TF Agents"
+    DEFAULT_KERNEL_NAME="tf-agents"
 
 RUN apt update && \
     apt full-upgrade -y && \
@@ -46,8 +46,8 @@ RUN conda env create --name jupyter -f /tmp/environment-jupyter.yaml && \
 COPY --chown=user tensorflow-agents/environment.yaml /tmp/environment-tf-agents.yaml
 RUN conda env create --name tf-agents -f /tmp/environment-tf-agents.yaml && \
     rm /tmp/environment-tf-agents.yaml && \
-    git -c http.sslVerify=false clone https://github.com/tensorflow/agents.git ~/work/tf-agents && \
-    ~/conda/envs/tf-agents/bin/pip install -e ~/work/tf-agents[tests]
+    git -c http.sslVerify=false clone https://github.com/tensorflow/agents.git ~/tf-agents && \
+    ~/conda/envs/tf-agents/bin/pip install -e ~/tf-agents[tests]
 
 COPY --chown=user tensorflow-agents/kernel.json /tmp/tf-agents/kernel.json
 RUN ~/conda/envs/jupyter/bin/jupyter kernelspec install /tmp/tf-agents --user --replace && \

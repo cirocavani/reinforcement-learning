@@ -47,11 +47,11 @@ Open a Terminal on Jupyter and run the following test.
 ```sh
 # Learn an agent that plays Lunar Lander (Console output)
 
-~/work/lunar-lander-learn.sh
+~/lunar-lander-learn.sh
 
 # Watch the agent playing Lunar Lander (VNC Web Client window) 
 
-~/work/lunar-lander-watch.sh
+~/lunar-lander-watch.sh
 ```
 
 Stop the Container.

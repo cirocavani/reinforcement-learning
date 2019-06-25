@@ -39,7 +39,7 @@ Open on the Host.
 http://127.0.0.1:8888
 
 
-> See examples notebooks at `work/tf-agents/tf_agents/colabs`.
+> See examples notebooks at `~/tf-agents/tf_agents/colabs`.
 
 
 Stop the Container.

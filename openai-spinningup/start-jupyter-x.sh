@@ -4,7 +4,6 @@ set -eu
 cd $HOME
 
 export DISPLAY=:1
-export SHELL=/bin/bash
 
 VNC_HOST=localhost
 VNC_PORT=5900
@@ -14,4 +13,4 @@ fluxbox > ~/logs/fluxbox.log 2>&1 &
 x11vnc -forever -display $DISPLAY -bg -nopw -listen $VNC_HOST -rfbport $VNC_PORT -xkb > ~/logs/x11vnc.log 2>&1 &
 ~/libs/noVNC-1.1.0/utils/launch.sh --vnc $VNC_HOST:$VNC_PORT > ~/logs/novnc.log 2>&1 &
 
-~/conda/envs/jupyter/bin/jupyter notebook
+~/bin/start-jupyter.sh
