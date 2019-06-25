@@ -1,0 +1,11 @@
+{
+    "display_name": "TF Agents",
+    "language": "python",
+    "argv": [
+        "/home/user/conda/envs/tf-agents/bin/python",
+        "-c",
+        "from ipykernel.kernelapp import main; main()",
+        "-f",
+        "{connection_file}"
+    ]
+}
