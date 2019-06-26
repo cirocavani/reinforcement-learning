@@ -1,4 +1,7 @@
-FROM ubuntu:16.04
+ARG baseimage
+FROM $baseimage
+
+ARG condaenv
 
 SHELL ["/bin/sh", "-lxc"]
 
@@ -8,7 +11,6 @@ ENV LANG=C.UTF-8 \
     DEFAULT_KERNEL_NAME="tf-agents"
 
 RUN apt update && \
-    apt full-upgrade -y && \
     apt install -y \
         --no-install-recommends \
         sudo \
@@ -34,16 +36,13 @@ RUN bash /tmp/Miniconda3-4.6.14-Linux-x86_64.sh -b -p ~/conda && \
     rm /tmp/Miniconda3-4.6.14-Linux-x86_64.sh && \
     echo 'PATH=$HOME/conda/bin:$PATH' >> ~/.profile
 
-RUN conda update -n base -y conda && \
-    conda update -q -y --all
-
 COPY --chown=user jupyter/environment.yaml /tmp/environment-jupyter.yaml
 COPY --chown=user jupyter/jupyter_notebook_config.py /home/user/.jupyter/
 COPY --chown=user jupyter/start-jupyter.sh /home/user/bin/
 RUN conda env create --name jupyter -f /tmp/environment-jupyter.yaml && \
     rm /tmp/environment-jupyter.yaml
 
-COPY --chown=user tensorflow-agents/environment.yaml /tmp/environment-tf-agents.yaml
+COPY --chown=user $condaenv /tmp/environment-tf-agents.yaml
 RUN conda env create --name tf-agents -f /tmp/environment-tf-agents.yaml && \
     rm /tmp/environment-tf-agents.yaml && \
     git -c http.sslVerify=false clone https://github.com/tensorflow/agents.git ~/tf-agents && \

@@ -18,9 +18,20 @@ https://www.youtube.com/watch?v=-TTziY7EmUA
 
 Build a Docker Container containing TensorFlow Agents.
 
+**CPU**
+
 ```sh
 ../bin/download-deps.sh
-./container-build.sh
+./container-build.sh cpu
+```
+
+**GPU**
+
+Requires [NVidia Docker](../nvidia/README.md).
+
+```sh
+../bin/download-deps.sh
+./container-build.sh gpu
 ```
 
 
@@ -28,8 +39,16 @@ Build a Docker Container containing TensorFlow Agents.
 
 Start the Container.
 
+CPU:
+
 ```sh
-./container-start.sh
+./container-start.sh cpu
+```
+
+GPU:
+
+```sh
+./container-start.sh gpu
 ```
 
 Open on the Host.
@@ -44,6 +63,14 @@ http://127.0.0.1:8888
 
 Stop the Container.
 
+CPU:
+
 ```sh
-./container-stop.sh
+./container-stop.sh cpu
+```
+
+GPU:
+
+```sh
+./container-stop.sh gpu
 ```

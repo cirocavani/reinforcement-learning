@@ -3,4 +3,16 @@ set -xeu
 
 cd $(dirname "$0")/..
 
-docker stop tf-agents
+HW_PLATFORM=${1:-cpu}
+
+case $HW_PLATFORM in
+    cpu)
+        ;;
+    gpu)
+        ;;
+    *)
+        echo "Unsupported platform: $HW_PLATFORM"
+        exit 1
+esac
+
+docker stop tf-agents-${HW_PLATFORM}

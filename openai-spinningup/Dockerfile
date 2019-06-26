@@ -1,4 +1,5 @@
-FROM ubuntu:16.04
+ARG baseimage
+FROM $baseimage
 
 SHELL ["/bin/sh", "-lxc"]
 
@@ -8,7 +9,6 @@ ENV LANG=C.UTF-8 \
     DEFAULT_KERNEL_NAME="spinningup"
 
 RUN apt update && \
-    apt full-upgrade -y && \
     apt install -y \
         --no-install-recommends \
         sudo \
@@ -41,14 +41,12 @@ RUN mkdir -p ~/libs/ ~/logs/ && \
     rm /tmp/novnc-1.1.0.zip /tmp/websockify-0.8.0.zip
 
 COPY --chown=user downloads/Miniconda3-4.6.14-Linux-x86_64.sh /tmp/
-RUN bash /tmp/Miniconda3-4.6.14-Linux-x86_64.sh -f -b -p ~/conda && \
+RUN bash /tmp/Miniconda3-4.6.14-Linux-x86_64.sh -b -p ~/conda && \
     echo 'PATH=$HOME/conda/bin:$PATH' >> ~/.profile && \
     rm /tmp/Miniconda3-4.6.14-Linux-x86_64.sh
 
 # numpy required by websockify
-RUN conda update -n base -y conda && \
-    conda update -q -y --all && \
-    conda install -y numpy
+RUN conda install -y numpy
 
 COPY --chown=user jupyter/environment.yaml /tmp/environment-jupyter.yaml
 COPY --chown=user jupyter/jupyter_notebook_config.py /home/user/.jupyter/
