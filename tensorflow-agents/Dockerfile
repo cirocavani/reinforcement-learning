@@ -36,6 +36,8 @@ RUN bash /tmp/Miniconda3-4.6.14-Linux-x86_64.sh -b -p ~/conda && \
     rm /tmp/Miniconda3-4.6.14-Linux-x86_64.sh && \
     echo 'PATH=$HOME/conda/bin:$PATH' >> ~/.profile
 
+RUN conda update -n base -c defaults -y conda
+
 COPY --chown=user jupyter/environment.yaml /tmp/environment-jupyter.yaml
 COPY --chown=user jupyter/jupyter_notebook_config.py /home/user/.jupyter/
 COPY --chown=user jupyter/start-jupyter.sh /home/user/bin/
