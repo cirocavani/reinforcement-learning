@@ -3,7 +3,9 @@ set -eu
 
 cd $HOME
 
-. activate x
+source ~/conda/etc/profile.d/conda.sh
+
+conda activate x
 
 VNC_HOST=localhost
 VNC_PORT=5900

@@ -5,11 +5,11 @@ dependencies:
   - ipykernel
   - pip
   - pip:
-    - cloudpickle==0.5.2
+    - cloudpickle==1.2.1
     - gym[atari,box2d,classic_control]>=0.10.8
     - ipython
     - joblib
-    - matplotlib==3.0.2
+    - matplotlib==3.1.1
     - mpi4py
     - numpy
     - pandas

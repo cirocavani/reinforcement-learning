@@ -29,7 +29,7 @@ Open on the Host.
 
 (Jupyter Notebook)
 
-http://127.0.0.1:8888
+http://127.0.0.1:9999
 
 (VNC Web Client)
 

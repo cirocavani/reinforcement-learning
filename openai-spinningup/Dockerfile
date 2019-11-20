@@ -38,7 +38,9 @@ RUN bash /tmp/Miniconda3-4.6.14-Linux-x86_64.sh -b -p ~/conda && \
     echo 'PATH=$HOME/conda/bin:$PATH' >> ~/.profile && \
     rm /tmp/Miniconda3-4.6.14-Linux-x86_64.sh
 
-RUN conda update -n base -c defaults -y conda
+RUN conda update -n base -c defaults -y conda && \
+    conda update -n base -c defaults -y --all && \
+    conda init bash
 
 COPY --chown=user downloads/novnc-1.1.0.zip /tmp/
 COPY --chown=user downloads/websockify-0.8.0.zip /tmp/
@@ -54,6 +56,7 @@ RUN conda create --name x python=3.7 && \
 
 COPY --chown=user jupyter/environment.yaml /tmp/environment-jupyter.yaml
 COPY --chown=user jupyter/jupyter_notebook_config.py /home/user/.jupyter/
+COPY --chown=user jupyter/themes.jupyterlab-settings /home/user/.jupyter/lab/user-settings/@jupyterlab/apputils-extension/
 COPY --chown=user jupyter/start-jupyter.sh /home/user/bin/
 RUN conda env create --name jupyter -f /tmp/environment-jupyter.yaml && \
     rm /tmp/environment-jupyter.yaml

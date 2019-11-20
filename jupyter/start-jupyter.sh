@@ -3,6 +3,10 @@ set -eu
 
 cd $HOME
 
+source ~/conda/etc/profile.d/conda.sh
+
+conda activate jupyter
+
 export SHELL=/bin/bash
 
-~/conda/envs/jupyter/bin/jupyter notebook
+jupyter lab
